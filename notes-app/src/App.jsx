@@ -40,17 +40,29 @@ function App() {
 		});
 	}
 
-	function showID(id) {
-		const style = {
-			backgroundColor: '#ffb703',
-		};
+	const style = {
+		backgroundColor: '',
+	};
 
-		console.log(id);
+	function showID(id) {
+		newNotesData.forEach((item) => {
+			if (item.id === id) {
+				console.log(item);
+			}
+		});
+
+		style.backgroundColor = '#ffb703';
 	}
 
 	const item = newNotesData.map((item) => {
 		return (
-			<SidebarContent key={item.id} item={item} id={item.id} showID={showID} />
+			<SidebarContent
+				key={item.id}
+				item={item}
+				id={item.id}
+				showID={showID}
+				style={style}
+			/>
 		);
 	});
 
@@ -61,7 +73,7 @@ function App() {
 				{item}
 			</div>
 			{newNotesData.length > 0 ? (
-				<Editor onChange={handleChange} bodyValue={newNotesData.body} />
+				<Editor onChange={showID} bodyValue={newNotesData.body} />
 			) : (
 				console.log('You hane no notes yet')
 			)}
