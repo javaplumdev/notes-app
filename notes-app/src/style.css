@@ -1,0 +1,75 @@
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+body {
+	font-family: 'Poppins', sans-serif;
+}
+
+.app-container {
+	height: 100vh;
+	display: flex;
+}
+
+.sidebar {
+	box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.title-sidebar {
+	padding: 1em;
+	display: flex;
+	align-items: center;
+}
+
+.title-sidebar p {
+	font-size: 1.2em;
+	font-weight: bold;
+}
+
+.title-sidebar button {
+	margin-left: 1em;
+	padding: 1em 1.2em;
+	border: none;
+	cursor: pointer;
+	background-color: #ffb703;
+	font-size: 1em;
+	font-weight: bold;
+	color: #fff;
+	border-radius: 0.5em;
+}
+
+.title-sidebar button:hover {
+	background-color: #e2a509;
+}
+
+.child-sidebar-notes {
+	display: flex;
+	flex-direction: column;
+}
+
+.sidebar-notes {
+	text-align: center;
+	padding: 1.5em;
+}
+
+.sidebar-notes:hover {
+	cursor: pointer;
+	background-color: #ffb703;
+}
+
+.child-sidebar-notes {
+	padding: 0.5em;
+}
+
+.editor {
+	padding: 1em;
+	width: 80%;
+}
+
+.editor textarea {
+	resize: none;
+
+	font-size: 1.5em;
+}
