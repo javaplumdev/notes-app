@@ -19,6 +19,7 @@ body {
 
 .title-sidebar {
 	padding: 1em;
+
 	display: flex;
 	align-items: center;
 }
@@ -66,10 +67,27 @@ body {
 .editor {
 	padding: 1em;
 	width: 80%;
+	display: flex;
+	flex-direction: column;
 }
 
 .editor textarea {
 	resize: none;
-
 	font-size: 1.5em;
+}
+
+.editor-buttons button {
+	padding: 1em 1.2em;
+	border: none;
+	cursor: pointer;
+	background-color: #ffb703;
+	font-size: 1em;
+	font-weight: bold;
+	color: #fff;
+	margin-bottom: 1em;
+}
+
+.editor-buttons button:hover {
+	cursor: pointer;
+	background-color: #e2a509;
 }

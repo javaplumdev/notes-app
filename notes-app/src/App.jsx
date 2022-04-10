@@ -8,8 +8,8 @@ import Editor from './components/Editor';
 function App() {
 	const [notesData, setNotesData] = useState({
 		id: 1,
-		title: 'Title',
-		body: 'Body',
+		title: '',
+		body: '',
 	});
 
 	const [newNotesData, setNewNotesData] = useState([]);
@@ -27,13 +27,31 @@ function App() {
 		setNewNotesData((prevState) => {
 			return [...prevState, notesData];
 		});
+	}
 
-		console.log(newNotesData);
-		console.log(newNotesData.length);
+	function handleChange(event) {
+		setNewNotesData((prevState) => {
+			const [name, value] = event.target;
+
+			return {
+				...prevState,
+				[name]: value,
+			};
+		});
+	}
+
+	function showID(id) {
+		const style = {
+			backgroundColor: '#ffb703',
+		};
+
+		console.log(id);
 	}
 
 	const item = newNotesData.map((item) => {
-		return <SidebarContent key={item.id} item={item} id={item.id} />;
+		return (
+			<SidebarContent key={item.id} item={item} id={item.id} showID={showID} />
+		);
 	});
 
 	return (
@@ -42,7 +60,11 @@ function App() {
 				<SidebarTitle handleClick={addNotes} />
 				{item}
 			</div>
-			<Editor />
+			{newNotesData.length > 0 ? (
+				<Editor onChange={handleChange} bodyValue={newNotesData.body} />
+			) : (
+				console.log('You hane no notes yet')
+			)}
 		</div>
 	);
 }

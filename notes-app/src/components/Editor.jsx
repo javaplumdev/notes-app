@@ -1,13 +1,17 @@
-function Editor() {
+function Editor(props) {
 	return (
 		<div className="editor">
-			<p>This is the editor tab</p>
+			<div className="editor-buttons">
+				<button>Edit</button>
+				<button>Preview</button>
+			</div>
 			<textarea
+				onChange={props.onChange}
+				name="body"
 				cols="50"
 				rows="10"
 				placeholder="What's on your mind..."
 			></textarea>
-			<button>Publish</button>
 		</div>
 	);
 }
