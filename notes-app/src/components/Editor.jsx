@@ -1,19 +1,9 @@
-function Editor(props) {
+const Editor = () => {
 	return (
-		<div className="editor">
-			<div className="editor-buttons">
-				<button>Edit</button>
-				<button>Preview</button>
-			</div>
-			<textarea
-				onChange={props.onChange}
-				name="body"
-				cols="50"
-				rows="10"
-				placeholder="What's on your mind..."
-			></textarea>
-		</div>
+		<>
+			<p>Editor</p>
+		</>
 	);
-}
+};
 
 export default Editor;
