@@ -1,40 +1,61 @@
-import React, { useState } from 'react';
-
+import { useEffect, useState } from 'react';
 import uuid from 'react-uuid';
-
+import './style.css';
+import Main from './components/Editor';
 import Sidebar from './components/Sidebar';
-import Editor from './components/Editor';
 
 function App() {
-	const [notesData, setNotesData] = useState([]);
+	const [notes, setNotes] = useState(
+		localStorage.notes ? JSON.parse(localStorage.notes) : []
+	);
 	const [activeNote, setActiveNote] = useState(false);
 
-	const handleClick = () => {
-		const notes = {
+	useEffect(() => {
+		localStorage.setItem('notes', JSON.stringify(notes));
+	}, [notes]);
+
+	const onAddNote = () => {
+		const newNote = {
 			id: uuid(),
-			title: 'Title Undefined',
+			title: 'Untitled Note',
 			body: '',
+			lastModified: Date.now(),
 		};
 
-		setNotesData([...notesData, notes]);
-
-		console.log(notesData);
+		setNotes([newNote, ...notes]);
+		setActiveNote(newNote.id);
 	};
 
-	const deleteButton = (idToDelete) => {
-		setNotesData(notesData.filter((note) => note.id !== idToDelete));
+	const onDeleteNote = (noteId) => {
+		setNotes(notes.filter(({ id }) => id !== noteId));
+	};
+
+	const onUpdateNote = (updatedNote) => {
+		const updatedNotesArr = notes.map((note) => {
+			if (note.id === updatedNote.id) {
+				return updatedNote;
+			}
+
+			return note;
+		});
+
+		setNotes(updatedNotesArr);
+	};
+
+	const getActiveNote = () => {
+		return notes.find(({ id }) => id === activeNote);
 	};
 
 	return (
-		<div className="app-container">
+		<div className="App">
 			<Sidebar
-				onClick={handleClick}
-				notesData={notesData}
+				notes={notes}
+				onAddNote={onAddNote}
+				onDeleteNote={onDeleteNote}
 				activeNote={activeNote}
 				setActiveNote={setActiveNote}
-				deleteButton={deleteButton}
 			/>
-			<Editor />
+			<Main activeNote={getActiveNote()} onUpdateNote={onUpdateNote} />
 		</div>
 	);
 }
